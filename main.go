@@ -19,6 +19,12 @@ func main() {
 	printIntroLine("На рыночной площади вы и решили разбирть свою торговую лавку.")
 
 	for {
+		gameIsOver := checkGameOver()
+
+		if gameIsOver {
+			return
+		}
+
 		buyerName := generateBuyerName()
 		fmt.Printf("\nК вашей лавке подошел %s.\n\n", buyerName)
 
@@ -29,10 +35,23 @@ func main() {
 		fmt.Printf("Похоже, что %s не заинтересован в \"%s\"\n", buyerName, strings.TrimSpace(input))
 	}
 }
+func checkGameOver() bool {
+	gameOverDice := rand.Int() % 10
+
+	if gameOverDice == 0 {
+		printIntroLine("Похоже, ваши товары никому не приглянулись.")
+		printIntroLine("Придется вступить в ряды ополчения или добывать руду в шахте.")
+		printIntroLine("GAME OVER")
+
+		return true
+	}
+
+	return false
+}
 
 func printIntroLine(message string) {
 	fmt.Println(message)
-	timer := time.NewTimer(0 * time.Second)
+	timer := time.NewTimer(3 * time.Second)
 	<-timer.C
 }
 
