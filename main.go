@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"math/rand"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -19,19 +20,19 @@ func main() {
 
 	for {
 		buyerName := generateBuyerName()
-		fmt.Printf("\nК вашей лавке подошел %s.\n", buyerName)
+		fmt.Printf("\nК вашей лавке подошел %s.\n\n", buyerName)
 
 		reader := bufio.NewReader(os.Stdin)
 		fmt.Print("Что вы хотите продать? : ")
 		input, _ := reader.ReadString('\n')
 
-		fmt.Printf("Похоже, что %s не заинтересован в \"%s\"", buyerName, input)
+		fmt.Printf("Похоже, что %s не заинтересован в \"%s\"\n", buyerName, strings.TrimSpace(input))
 	}
 }
 
 func printIntroLine(message string) {
 	fmt.Println(message)
-	timer := time.NewTimer(5 * time.Second)
+	timer := time.NewTimer(0 * time.Second)
 	<-timer.C
 }
 
