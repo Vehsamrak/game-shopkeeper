@@ -19,13 +19,13 @@ func main() {
 
 	for {
 		buyerName := generateBuyerName()
-		fmt.Printf("К вашей лавке подошел %s.\n\n", buyerName)
+		fmt.Printf("\nК вашей лавке подошел %s.\n", buyerName)
 
 		reader := bufio.NewReader(os.Stdin)
 		fmt.Print("Что вы хотите продать? : ")
 		input, _ := reader.ReadString('\n')
 
-		fmt.Printf("Похоже, что %s не заинтересован в %s", buyerName, input)
+		fmt.Printf("Похоже, что %s не заинтересован в \"%s\"", buyerName, input)
 	}
 }
 
