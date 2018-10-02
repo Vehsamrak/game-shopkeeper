@@ -36,7 +36,7 @@ func main() {
 	}
 }
 func checkGameOver() bool {
-	gameOverDice := rand.Int() % 10
+	gameOverDice := rand.Int() % 5
 
 	if gameOverDice == 0 {
 		printIntroLine("Похоже, ваши товары никому не приглянулись.")
