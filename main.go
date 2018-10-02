@@ -11,22 +11,28 @@ import (
 func main() {
 	rand.Seed(time.Now().Unix())
 
-	fmt.Println("Вы родились в бедной семье фермеров в небольшой деревушке на окраине королевства.")
-	fmt.Println("Но сбор урожая и уход за скотом никогда вас не радовал. Вас манил запах золота.")
-	fmt.Println("Собрав все свое имущество вы отправились в путешествие в поисках богатств и лучшей жизни.")
-	fmt.Println("Ваш путь был непрост, и заняв два месяца он закончился когда вы увидели ворота большого города.")
-	fmt.Println("На рыночной площади вы и решили разбирть свою торговую лавку.")
+	printIntroLine("Вы родились в бедной семье фермеров в небольшой деревушке на окраине королевства.")
+	printIntroLine("Но сбор урожая и уход за скотом никогда вас не радовал. Вас манил запах золота.")
+	printIntroLine("Собрав все свое имущество вы отправились в путешествие в поисках богатств и лучшей жизни.")
+	printIntroLine("Ваш путь был непрост, и заняв два месяца он закончился когда вы увидели ворота большого города.")
+	printIntroLine("На рыночной площади вы и решили разбирть свою торговую лавку.")
 
-	const SecondsToNextClient = 1
-	ticker := time.NewTicker(SecondsToNextClient * time.Second)
-	for range ticker.C {
+	for {
 		buyerName := generateBuyerName()
 		fmt.Printf("К вашей лавке подошел %s.\n\n", buyerName)
+
 		reader := bufio.NewReader(os.Stdin)
-		fmt.Print("Enter text: ")
-		text, _ := reader.ReadString('\n')
-		fmt.Println(text)
+		fmt.Print("Что вы хотите продать? : ")
+		input, _ := reader.ReadString('\n')
+
+		fmt.Printf("Похоже, что %s не заинтересован в %s", buyerName, input)
 	}
+}
+
+func printIntroLine(message string) {
+	fmt.Println(message)
+	timer := time.NewTimer(5 * time.Second)
+	<-timer.C
 }
 
 func generateBuyerName() string {
